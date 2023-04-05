@@ -8,7 +8,7 @@ A password generator that can generate random passwords based on criteria that t
 
 ## Visit the Site
 
-[Cleck Here to Visit the Deployed Site](https://ohsweetwampum.github.io/password-generator/)
+[Cleck Here to Visit the Deployed Site](https://ohsweetwampum.github.io/work-day-scheduler-app/)
 
 ## Description
 

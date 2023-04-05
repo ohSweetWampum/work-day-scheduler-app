@@ -1,23 +1,155 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-});
+
+  $(function() {
+    //select the element with the class .btn.saveBtn.col-2.col-md-1"
+    var saveButton = $(".btn.saveBtn.col-2.col-md-1");
+    saveButton.click(function() {
+     
+      var taskText = $(this).siblings(".col-8 col-md-10 description").val();
+      var taskTime = $(this).parent().attr("id");
+
+      storeToLocal({
+        taskText: taskText,
+        taskTime: taskTime
+      });
+      
+    });
+  });
+
+  //save to local storage function
+  function storeToLocal(){
+    $(".saveBtn").on("click", function(){
+      var taskText = $(this).siblings(".description").val();
+      var taskTime = $(this).siblings(".hour").text();
+      localStorage.setItem(taskTime, taskText);
+    });
+  }
+  //retrieve from local storage, goes through every hour looking for stored data and retrieves it if there. if there is a saved task then it sets the textarea elemnt to the saved value
+  function retrieveFromLocal() {
+    for (var hour = 0; hour < 24; hour++) {
+      var taskTime = $("#hour-" + hour + " .hour").text();
+      var savedTaskText = localStorage.getItem(taskTime);
+      if (savedTaskText !== null) {
+        $("#hour-" + hour + " .description").val(savedTaskText);
+      }
+    }
+  }
+
+  retrieveFromLocal();
+
+
+
+  $(function() {
+    var currentTime = dayjs();
+    var currentHour = currentTime.hour();
+  
+    // loop through every hour of the day and check to see if that hour is past, present or future of current hour, then add appropriate class to each box
+    for (var hour = 0; hour < 24; hour++) {
+      // check if hour is past
+      if (currentHour > hour) {
+        $("#hour-" + hour).addClass("past");
+      }
+      // check if hour is present
+      else if (currentHour === hour) {
+        $("#hour-" + hour).addClass("present");
+      }
+      // otherwise, hour is future
+      else {
+        $("#hour-" + hour).addClass("future");
+      }
+    }
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+// //Generation a div element for each hour and will assign correct time (past,present, or future). This save a bunch of coding
+//   $(function() {
+//     var currentDate = dayjs();
+//     var currentHour = currentDate.hour();
+
+//     //looping through all 24 hours and creating and new hour box for each one
+//     for (var i = 0; i < 24; i++){
+//       var hourBox = $("<div>").addClass("row time-block");
+
+
+//       //asssigning past, present, or future alerts to each hour box based on current time
+
+//       if (i < currentHour){
+//         hourBox.addClass("past");
+//       }else if (i === currentHour){
+//         hourBox.addClass("present");
+//       }else{
+//         hourBox.addClass("future");
+//       }
+
+//       //create the hour text and add it to box
+//       var eachHourText = $("<div>")
+//       .addClass("col-2 col-md-1 hour text-center py-3")
+//       .text(dayjs({hour: i}).format("hA"));
+//       hourBox.append(eachHourText);
+
+//       //create task text input area
+//       var taskDescriptionArea = $("<textarea>")
+//       .addClass("col-8 col-md-10 description")
+//       .attr("rows", "3");
+//       hourBox.append(taskDescriptionArea);
+
+
+//       //create save button for each hour box
+
+//       var saveButton = $("<button>")
+//       .addClass("btn saveBtn col-2 col-md-1")
+//       .attr("aria-label", "save");
+//       var saveIcon = $("<i>")
+//       .addClass("fas fa-save")
+//       .attr("aria-hidden", "true");
+
+
+//       //add the entire completed hour box to the page
+
+//       $("#hour-9").append(hourBox);
+//     }
+//   });
+
+
+//   for (var i = 0; i < 24; i++){
+//     var hourText = dayjs({hour: i}).format("hA");
+//     var hourBox = $("<div>").addClass("row time-block");
+//     var eachHourText = $("<div>")
+//     .addClass("col-2 col-md-1 hour text-center py-3")
+//     .text(hourText);
+//     hourBox.append(eachHourText);
+//     // rest of the code for each hour box
+//     $("#planner").append(hourBox);
+//   }
+
+// var eachHourText = $("<div>")
+//     .addClass("col-2 col-md-1 hour text-center py-3")
+//     .text(dayjs({hour: i}).format("hA"));
+// hourBox.append(eachHourText);
+
+
+
+
+      
