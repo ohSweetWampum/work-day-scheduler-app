@@ -59,6 +59,16 @@
     }
   });
   
+//display current day at top of the page
+//<p id="currentDay" class="lead"></p>
+
+function displayCurrentDateAtTop(){
+  $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY h:mm a"));
+}
+
+displayCurrentDateAtTop();
+
+
 
 
 
