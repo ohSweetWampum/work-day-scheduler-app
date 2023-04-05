@@ -1,10 +1,17 @@
+//display current day at top of the page
+function displayCurrentDateAtTop(){
+  $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY h:mm a"));
+}
 
+displayCurrentDateAtTop();
+
+//adding event listener so that when the save button is pressed the data is saved to locals and a default, past,present or future class is assigned to the current block
   $(function() {
     //select the element with the class .btn.saveBtn.col-2.col-md-1"
     var saveButton = $(".btn.saveBtn.col-2.col-md-1");
     saveButton.click(function() {
      
-      var taskText = $(this).siblings(".col-8 col-md-10 description").val();
+      var taskText = $(this).siblings(".description").val();
       var taskTime = $(this).parent().attr("id");
 
       storeToLocal({
@@ -15,7 +22,38 @@
     });
   });
 
-  //save to local storage function
+
+  $(function() {
+    var currentTime = dayjs();
+    var currentHour = currentTime.hour();
+  
+    // loop through every hour of the day and check to see if that hour is past, present or future of current hour, then add appropriate class to each box
+    for (var hour = 0; hour < 24; hour++) {
+      var taskText = localStorage.getItem("hour-" + hour);
+      //checks to see if there is string stored in block, if so the appropiate class will be applied
+      if (taskText !== null && taskText.trim() !== "") {
+        //  if hour is in the past
+        if (currentHour > hour) {
+          $("#hour-" + hour).addClass("past");
+          console.log("yes");
+        }
+        //  if hour is present time
+        else if (currentHour === hour) {
+          $("#hour-" + hour).addClass("present");
+          console.log("yes");
+        }
+        //  if hour is in the future
+        else {
+          $("#hour-" + hour).addClass("future");
+          console.log("yes");
+        }
+      }
+    }
+  });
+  
+  
+
+//save to local storage function
   function storeToLocal(){
     $(".saveBtn").on("click", function(){
       var taskText = $(this).siblings(".description").val();
@@ -38,35 +76,7 @@
 
 
 
-  $(function() {
-    var currentTime = dayjs();
-    var currentHour = currentTime.hour();
   
-    // loop through every hour of the day and check to see if that hour is past, present or future of current hour, then add appropriate class to each box
-    for (var hour = 0; hour < 24; hour++) {
-      // check if hour is past
-      if (currentHour > hour) {
-        $("#hour-" + hour).addClass("past");
-      }
-      // check if hour is present
-      else if (currentHour === hour) {
-        $("#hour-" + hour).addClass("present");
-      }
-      // otherwise, hour is future
-      else {
-        $("#hour-" + hour).addClass("future");
-      }
-    }
-  });
-  
-//display current day at top of the page
-//<p id="currentDay" class="lead"></p>
-
-function displayCurrentDateAtTop(){
-  $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY h:mm a"));
-}
-
-displayCurrentDateAtTop();
 
 
 
@@ -92,74 +102,4 @@ displayCurrentDateAtTop();
 
 
 
-  
-// //Generation a div element for each hour and will assign correct time (past,present, or future). This save a bunch of coding
-//   $(function() {
-//     var currentDate = dayjs();
-//     var currentHour = currentDate.hour();
 
-//     //looping through all 24 hours and creating and new hour box for each one
-//     for (var i = 0; i < 24; i++){
-//       var hourBox = $("<div>").addClass("row time-block");
-
-
-//       //asssigning past, present, or future alerts to each hour box based on current time
-
-//       if (i < currentHour){
-//         hourBox.addClass("past");
-//       }else if (i === currentHour){
-//         hourBox.addClass("present");
-//       }else{
-//         hourBox.addClass("future");
-//       }
-
-//       //create the hour text and add it to box
-//       var eachHourText = $("<div>")
-//       .addClass("col-2 col-md-1 hour text-center py-3")
-//       .text(dayjs({hour: i}).format("hA"));
-//       hourBox.append(eachHourText);
-
-//       //create task text input area
-//       var taskDescriptionArea = $("<textarea>")
-//       .addClass("col-8 col-md-10 description")
-//       .attr("rows", "3");
-//       hourBox.append(taskDescriptionArea);
-
-
-//       //create save button for each hour box
-
-//       var saveButton = $("<button>")
-//       .addClass("btn saveBtn col-2 col-md-1")
-//       .attr("aria-label", "save");
-//       var saveIcon = $("<i>")
-//       .addClass("fas fa-save")
-//       .attr("aria-hidden", "true");
-
-
-//       //add the entire completed hour box to the page
-
-//       $("#hour-9").append(hourBox);
-//     }
-//   });
-
-
-//   for (var i = 0; i < 24; i++){
-//     var hourText = dayjs({hour: i}).format("hA");
-//     var hourBox = $("<div>").addClass("row time-block");
-//     var eachHourText = $("<div>")
-//     .addClass("col-2 col-md-1 hour text-center py-3")
-//     .text(hourText);
-//     hourBox.append(eachHourText);
-//     // rest of the code for each hour box
-//     $("#planner").append(hourBox);
-//   }
-
-// var eachHourText = $("<div>")
-//     .addClass("col-2 col-md-1 hour text-center py-3")
-//     .text(dayjs({hour: i}).format("hA"));
-// hourBox.append(eachHourText);
-
-
-
-
-      
