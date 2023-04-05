@@ -1,10 +1,6 @@
 # work-day-scheduler-app
 
-work-day-scheduler-app
-
-# password-generator
-
-A password generator that can generate random passwords based on criteria that the user has selected
+work day scheduler app
 
 ## Visit the Site
 
@@ -15,6 +11,15 @@ A password generator that can generate random passwords based on criteria that t
 This program asks the user how long they want their password to be (min 8 - max 128) and if they would like to include lowercase letters, uppercase letters, numbers, or special characters in their password. The user must select at least 1 character type (lowercase, uppercase, special character, number). They must answer either "yes" or "no" to all prompts about character type or 8-18 for the password length prompt, if they fail to do any if this, they will be sent to the beginning of the program to start over. A password is randomly generated based off the user criteria.
 
 ## Technology Used
+
+- Bootstrap
+  [Learn about Bootstrap](https://getbootstrap.com/)
+
+- Day.js
+  [Learn about Day.js](https://day.js.org/)
+
+- jQuery
+  [Learn about jQuery](https://jquery.com/)
 
 - JavaScript
   [Learn about JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -71,17 +76,14 @@ Matthew Gibson
 [meyerweb.com](https://meyerweb.com/eric/tools/css/reset/)
 (For my reset.css file)
 
-[w3schools.com](https://www.w3schools.com/js/js_array_methods.asp)
-(array methods)
+[w3schools.com](https://www.w3schools.com/jquery/html_addclass.asp)
+(addClass() method)
 
-[w3schools.com](https://www.w3schools.com/js/js_if_else.asp)
-(else if statements)
+[day.js.org](https://day.js.org/)
+(Day.js documents)
 
-[w3schools.com](https://www.w3schools.com/js/js_loop_while.asp)
-(while loops)
-
-[developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
-(math.random())
+[jQuery.com](https://jquery.com/)
+(jQuery Documents)
 
 ## License
 
