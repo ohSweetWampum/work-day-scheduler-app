@@ -21,35 +21,40 @@ displayCurrentDateAtTop();
       
     });
   });
-
+///////////////////////////////////need to fists remove current class then you can add the new class
 
   $(function() {
     var currentTime = dayjs();
     var currentHour = currentTime.hour();
-  
+    console.log(currentHour);
     // loop through every hour of the day and check to see if that hour is past, present or future of current hour, then add appropriate class to each box
     for (var hour = 0; hour < 24; hour++) {
-      var taskText = localStorage.getItem("hour-" + hour);
+      // var taskText = localStorage.getItem("hour-" + hour);
+      
       //checks to see if there is string stored in block, if so the appropiate class will be applied
-      if (taskText !== null && taskText.trim() !== "") {
+      
+
+        
         //  if hour is in the past
         if (currentHour > hour) {
           $("#hour-" + hour).addClass("past");
-          console.log("yes");
+          
         }
         //  if hour is present time
         else if (currentHour === hour) {
           $("#hour-" + hour).addClass("present");
-          console.log("yes");
+          
         }
         //  if hour is in the future
         else {
           $("#hour-" + hour).addClass("future");
-          console.log("yes");
+          
         }
       }
     }
-  });
+  );
+  
+  //toggling the classes based on past, present or future
   
   
 
@@ -59,6 +64,7 @@ displayCurrentDateAtTop();
       var taskText = $(this).siblings(".description").val();
       var taskTime = $(this).siblings(".hour").text();
       localStorage.setItem(taskTime, taskText);
+      
     });
   }
   //retrieve from local storage, goes through every hour looking for stored data and retrieves it if there. if there is a saved task then it sets the textarea elemnt to the saved value
@@ -68,6 +74,9 @@ displayCurrentDateAtTop();
       var savedTaskText = localStorage.getItem(taskTime);
       if (savedTaskText !== null) {
         $("#hour-" + hour + " .description").val(savedTaskText);
+     
+
+      
       }
     }
   }
@@ -76,7 +85,7 @@ displayCurrentDateAtTop();
 
 
 
-  
+  // col-8 input-field" id="text01"><
 
 
 
