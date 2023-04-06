@@ -8,7 +8,7 @@ work day scheduler app
 
 ## Description
 
-This app has 24 time blocks, one for every hour of the day. In each hour block you can enter text to describe what task(s) you need to do at that particular time of the day. You can save your tasks by clicking the floppy disk icon and come back to the page whenever you need to and your tasks will still be there.The grey boxes indicate tasks that are past due, the red box is the task that you need to do at the moment, and the green boxes are tasks that you'll need to do in the future. At the top of the page there is displayed the current date and time, which you can reference to if needed.
+This app has 9 time blocks, one for every hour of the work day. In each hour block you can enter text to describe what task(s) you need to do at that particular time of the day. You can save your tasks by clicking the floppy disk icon and come back to the page whenever you need to and your tasks will still be there.The grey boxes indicate tasks that are past due, the red box is the task that you need to do at the moment, and the green boxes are tasks that you'll need to do in the future. At the top of the page there is displayed the current date and time, which you can reference to if needed.
 
 ## Technology Used
 
